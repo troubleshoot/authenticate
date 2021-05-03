@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {%load static%}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <title>Your Dashboard</title>
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+  <h1>Welcome Back, {{ first_name }}!</h1>
+  <a href="/logout">Logout</a>
+  <form action="/password/new" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="create">
+    <input type="submit" value="New Password">
+  </form>
+  <h3>Your Passwords:</h3>
+  <table class="table table-success table-striped">
+    <tr>
+      <th>NAME</th>
+      <th>URL</th>
+      <th>USERNAME</th>
+      <th>EMAIL</th>
+      <th>PASSWORD</th>
+      <th>ACTIONS</th>
+    </tr>
+    {% for password in created_passwords %}
+      <tr>
+        <td><a href="password/{{ password.id }}" value="{{ password.name }}" class="link-dark">{{ password.name }}</a></td>
+        <td>{{ password.url }}</td>
+        <td>{{ password.username }}</td>
+        <td>{{ password.email }}</td>
+        <td>{{ password.password }}</td>
+        <td><a href="password/remove/{{ password.id }}" value="remove">Remove</a> | <a href="password/edit/{{ password.id }}" value="edit">Edit</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

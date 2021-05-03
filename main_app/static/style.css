@@ -1,0 +1,13 @@
+#container {
+  width: 800px;
+  height: 1200px;
+  margin: auto;
+  text-align: center;
+}
+#errors{
+  margin: auto;
+  width: 600px;
+  background-color: lightgray;
+  text-align: center;
+  border-radius: 25px;
+}

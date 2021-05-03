@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Password Manager</title>
+  </head>
+  <body class="p-3 mb-2 bg-dark text-white">
+    <h1 style="text-align: center; margin-bottom: 75px;">PASSWORD MANAGER</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3>Register</h3>
+          <form action="/register" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="register">
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">First Name:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name="first_name">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="last_name" class="col-sm-3 col-form-label">Last Name:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name="last_name">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">Email:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" name="email">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">Password:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" name="password">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">Confirm PW:</label>
+              <div class="col-sm-5">
+                <input type="password" class="form-control" name="confirm_pw">
+              </div>
+            </div>
+            <button>Register</button>
+          </form>
+        </div>
+        <div class="col">
+          <h3>Login</h3>
+          <form action="/login" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="login">
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">Email:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" name="email">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="first_name" class="col-sm-3 col-form-label">Password:</label>
+              <div class="col-sm-6">
+                <input type="password" class="form-control" name="password">
+              </div>
+            </div>
+            <button>Login</button>
+          </form>
+        </div>
+      </div>
+    </div>    
+    {% if messages %}
+      <div id="errors">
+        <ul class="messages">    
+          {% for message in messages %}
+            <li style="color: red;">{{ message }}</li>    
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </body>
+</html>
